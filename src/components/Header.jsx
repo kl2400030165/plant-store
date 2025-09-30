@@ -1,22 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Header = () => {
-  const totalItems = useSelector((state) =>
-    state.cart.items.reduce((sum, i) => sum + i.quantity, 0)
-  );
+export default function Header() {
+  const totalQuantity = useSelector(state => state.cart.totalQuantity);
 
   return (
-    <header className="flex justify-between items-center px-6 py-4 bg-green-700 text-white fixed w-full top-0 shadow">
-      <h1 className="text-xl font-bold">🌱 Plant Store</h1>
-      <nav className="flex gap-6">
-        <Link to="/">Home</Link>
-        <Link to="/products">Shop</Link>
-        <Link to="/cart">Cart 🛒 ({totalItems})</Link>
+    <header style={{display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #ccc'}}>
+      <div>
+        <Link to="/">Plant Store</Link>
+      </div>
+      <nav>
+        <Link to="/">Home</Link> | {' '}
+        <Link to="/products">Products</Link> | {' '}
+        <Link to="/cart">
+          Cart ({totalQuantity})
+        </Link>
       </nav>
     </header>
   );
-};
-
-export default Header;
+}
